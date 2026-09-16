@@ -25,40 +25,64 @@
 //   throw error;
 // }
 
+
+
+// import { NestFactory } from '@nestjs/core';
+// import { AppModule } from './app.module.js';
+// import { ValidationPipe } from '@nestjs/common';
+
+// async function bootstrap() {
+//   console.log('BOOT: starting Nest');
+
+//   const app = await NestFactory.create(AppModule);
+
+//   console.log('BOOT: Nest created');
+
+//   app.useGlobalPipes(
+//     new ValidationPipe({
+//       whitelist: true,
+//       forbidNonWhitelisted: true,
+//       transform: true,
+//     }),
+//   );
+
+//   app.enableCors({
+//     origin: process.env.FRONTEND_URL ?? 'http://localhost:5173',
+//   });
+
+//   console.log('BOOT: DATABASE_URL exists:', Boolean(process.env.DATABASE_URL));
+//   console.log('BOOT: FRONTEND_URL exists:', Boolean(process.env.FRONTEND_URL));
+
+//   await app.listen(process.env.PORT ?? 3000);
+
+//   console.log('BOOT: listening');
+// }
+
+// try {
+//   await bootstrap();
+// } catch (error) {
+//   console.error('BOOT FAILED:', error);
+//   throw error;
+// }
+
+
+
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module.js';
-import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
-  console.log('BOOT: starting Nest');
+  console.log('BOOT START');
 
   const app = await NestFactory.create(AppModule);
 
-  console.log('BOOT: Nest created');
-
-  app.useGlobalPipes(
-    new ValidationPipe({
-      whitelist: true,
-      forbidNonWhitelisted: true,
-      transform: true,
-    }),
-  );
-
-  app.enableCors({
-    origin: process.env.FRONTEND_URL ?? 'http://localhost:5173',
-  });
-
-  console.log('BOOT: DATABASE_URL exists:', Boolean(process.env.DATABASE_URL));
-  console.log('BOOT: FRONTEND_URL exists:', Boolean(process.env.FRONTEND_URL));
+  console.log('NEST CREATED');
 
   await app.listen(process.env.PORT ?? 3000);
 
-  console.log('BOOT: listening');
+  console.log('LISTENING');
 }
 
-try {
-  await bootstrap();
-} catch (error) {
+bootstrap().catch((error) => {
   console.error('BOOT FAILED:', error);
-  throw error;
-}
+  process.exit(1);
+});
