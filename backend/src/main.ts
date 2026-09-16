@@ -9,12 +9,12 @@ async function bootstrap() {
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
-      forbidNonWhitelisted: true, // forbids completed job creation
+      forbidNonWhitelisted: true, // rejects properties not defined in the DTO
       transform: true,
     }),
-  )
+  );
   app.enableCors({
-    origin:'http://localhost:5173',
+    origin: process.env.FRONTEND_URL ?? 'http://localhost:5173',
   });
   await app.listen(process.env.PORT ?? 3000);
 }

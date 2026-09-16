@@ -1,4 +1,13 @@
-import { Body, Controller, Get, Post, Param, ParseIntPipe, Patch, Delete } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Param,
+  ParseIntPipe,
+  Patch,
+  Delete,
+} from '@nestjs/common';
 import { JobsService } from './jobs.service.js';
 import { CreateJobDto } from './dto/create-job.dto.js';
 import { UpdateJobStatusDto } from './dto/update-job-status.dto.js';
@@ -18,7 +27,7 @@ export class JobsController {
   }
 
   @Get(':id')
-  getJobById(@Param('id', ParseIntPipe) id: number){
+  getJobById(@Param('id', ParseIntPipe) id: number) {
     return this.jobsService.getJobById(id);
   }
 
@@ -27,11 +36,11 @@ export class JobsController {
     @Param('id', ParseIntPipe) id: number,
     @Body() updateJobStatusDto: UpdateJobStatusDto,
   ) {
-    return this.jobsService.updateJobStatus(id, updateJobStatusDto)
+    return this.jobsService.updateJobStatus(id, updateJobStatusDto);
   }
 
   @Delete(':id')
-  deleteJob(@Param('id', ParseIntPipe) id: number){
+  deleteJob(@Param('id', ParseIntPipe) id: number) {
     return this.jobsService.deleteJob(id);
   }
 }
