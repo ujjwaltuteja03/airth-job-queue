@@ -15,6 +15,7 @@
 
 import { Module, Controller, Get } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { DatabaseModule } from './database/database.module.js';
 
 @Controller()
 class TestController {
@@ -34,6 +35,7 @@ class TestController {
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+    DatabaseModule,
   ],
   controllers: [TestController],
 })
