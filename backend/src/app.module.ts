@@ -13,8 +13,8 @@
 // })
 // export class AppModule {}
 
-import { Module } from '@nestjs/common';
-import { Controller, Get } from '@nestjs/common';
+import { Module, Controller, Get } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 
 @Controller()
 class TestController {
@@ -30,6 +30,11 @@ class TestController {
 }
 
 @Module({
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+  ],
   controllers: [TestController],
 })
 export class AppModule {}
