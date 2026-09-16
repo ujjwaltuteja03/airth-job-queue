@@ -16,6 +16,11 @@ import { UpdateJobStatusDto } from './dto/update-job-status.dto.js';
 export class JobsController {
   constructor(private readonly jobsService: JobsService) {}
 
+  @Get('health')
+  health() {
+    return { status: 'ok' };
+  }
+
   @Get()
   getAllJobs() {
     return this.jobsService.getAllJobs();
